@@ -8,3 +8,18 @@ A collection of projects made in Qt 6. Made for learning C++.
 # Projects
 **Main**: Information about this entire project.
 **MiniProjects**: Small single-page projects. Information about these projects are on their page.
+
+# Credits
+## Author
+Made by: [AaronMisc](https://github.com/AaronMisc/)
+GitHub: https://github.com/AaronMisc/
+QT6ProjectCollection GitHub: https://github.com/AaronMisc/QT6ProjectCollection
+
+## General
+Font: [JetBrainsMono](https://www.jetbrains.com/lp/mono/) (https://www.jetbrains.com/lp/mono/)
+
+## Software
+IDE: Qt Creator
+Framework: [Qt6](https://www.qt.io/development/qt-framework/qt6) (https://www.qt.io/development/qt-framework/qt6)
+Language: C++
+Build System: CMake
