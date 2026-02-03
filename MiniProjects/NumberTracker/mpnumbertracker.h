@@ -4,6 +4,10 @@
 #include <QWidget>
 #include <QLCDNumber>
 #include <QLineEdit>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QString>
+#include <QFile>
 
 namespace Ui {
 class MPNumberTracker;
@@ -30,6 +34,10 @@ private:
     void changeTrackedNumber(int changeBy);
     void setTrackedNumber(int setTo);
     void enterNumber(Operation operation);
+    int getNumberTrackerValue(const QString &key);
+    void setNumberTrackerValue(const QString &key, int value);
+    void saveNumberTrackerJson(const QJsonObject &root);
+    QString getSlotNumber();
 };
 
 #endif // MPNUMBERTRACKER_H

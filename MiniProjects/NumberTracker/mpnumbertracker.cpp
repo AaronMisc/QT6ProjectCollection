@@ -19,6 +19,10 @@ MPNumberTracker::MPNumberTracker(QWidget *parent) : QWidget(parent), ui(new Ui::
     connect(ui->buttonAddNumber, &QPushButton::clicked, this, [this]() {enterNumber(Operation::Add);});
     connect(ui->buttonSubtractNumber, &QPushButton::clicked, this, [this]() {enterNumber(Operation::Subtract);});
     connect(ui->buttonSetNumber, &QPushButton::clicked, this, [this]() {enterNumber(Operation::Set);});
+
+    // Slot
+    connect(ui->buttonSlotGet, &QPushButton::clicked, this, [this]() {setTrackedNumber(getNumberTrackerValue(getSlotNumber()));});
+    connect(ui->buttonSlotSet, &QPushButton::clicked, this, [this]() {setNumberTrackerValue(getSlotNumber(), trackedNumber);});
 }
 
 MPNumberTracker::~MPNumberTracker() {
@@ -50,4 +54,61 @@ void MPNumberTracker::enterNumber(Operation operation) {
             setTrackedNumber(enteredNumber);
             break;
     }
+}
+
+QJsonObject getRootJson()
+{
+    QFile file("QTProjectCollectionData.json");
+    file.open(QIODevice::ReadOnly);
+
+    QJsonDocument doc = QJsonDocument::fromJson(file.readAll());
+    file.close();
+
+    return doc.object();
+}
+
+QJsonObject getNumberTrackerObjInJson()
+{
+    QJsonObject root = getRootJson();
+
+    return root.value("MiniProjects")
+        .toObject()
+        .value("NumberTracker")
+        .toObject();
+}
+
+void MPNumberTracker::saveNumberTrackerJson(const QJsonObject &root)
+{
+    QFile file("QTProjectCollectionData.json");
+    if (!file.open(QIODevice::WriteOnly | QIODevice::Truncate))
+        return;
+
+    QJsonDocument doc(root);
+    file.write(doc.toJson(QJsonDocument::Indented));
+}
+
+void MPNumberTracker::setNumberTrackerValue(const QString &key, int value)
+{
+    QJsonObject root = getRootJson();
+
+    QJsonObject miniProjectObj = root.value("MiniProjects").toObject();
+    QJsonObject numberTrackerObj = miniProjectObj.value("NumberTracker").toObject();
+
+    numberTrackerObj.insert(key, value);
+    miniProjectObj.insert("NumberTracker", numberTrackerObj);
+    root.insert("MiniProjects", miniProjectObj);
+
+    saveNumberTrackerJson(root);
+}
+
+QString MPNumberTracker::getSlotNumber()
+{
+    return ui->slotNumber->text();
+}
+
+int MPNumberTracker::getNumberTrackerValue(const QString &key)
+{
+    QJsonObject numberTrackerObj = getNumberTrackerObjInJson();
+
+    return numberTrackerObj.value(key).toInt(0);
 }
