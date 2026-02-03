@@ -1,0 +1,11 @@
+# ninja log v7
+3	337	1769426127372825700	QTProjectCollection_autogen/timestamp	faa22e41f0565a5f
+3	337	1769426127372825700	QTProjectCollection_autogen/mocs_compilation.cpp	faa22e41f0565a5f
+3	337	1769426127372825700	/run/media/aaronmisc/Data/SystemFolders/Aaron/Desktop/Coding/QT6ProjectCollectionGithub/QT6ProjectCollection/QTProjectCollection_autogen/timestamp	faa22e41f0565a5f
+3	337	1769426127372825700	/run/media/aaronmisc/Data/SystemFolders/Aaron/Desktop/Coding/QT6ProjectCollectionGithub/QT6ProjectCollection/QTProjectCollection_autogen/mocs_compilation.cpp	faa22e41f0565a5f
+359	2377	1769426127410553800	CMakeFiles/QTProjectCollection.dir/main.cpp.o	9f1b86b850b393c6
+359	2729	1769426127410254000	CMakeFiles/QTProjectCollection.dir/QTProjectCollection_autogen/mocs_compilation.cpp.o	bb6c46f5bd6fd407
+360	2907	1769426127410790900	CMakeFiles/QTProjectCollection.dir/mainwindow.cpp.o	ebc3c3aca3239ee
+360	3202	1769426127411044200	CMakeFiles/QTProjectCollection.dir/MiniProjects/NumberTracker/mpnumbertracker.cpp.o	d974de5fe7249d70
+360	3508	1769426127411299600	CMakeFiles/QTProjectCollection.dir/AESCryptography/aescryptography.cpp.o	7036ee2bea90d6ed
+3511	3905	1769426130561698800	QTProjectCollection	c1fab191db1a26db
