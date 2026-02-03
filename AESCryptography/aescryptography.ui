@@ -51,9 +51,23 @@ li.checked::marker { content: &quot;\2612&quot;; }
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Description&lt;/span&gt;: UI and functions for encrypting text with AES, hashing with SHA256, and decrypting.&lt;/p&gt;
 &lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:700; text-decoration: underline;&quot;&gt;Pages&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Encrypt&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;: Encrypt and decrypt text with AES-256.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Encrypt&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;: &lt;/span&gt;Encrypt and decrypt text securely using AES-256.&lt;/p&gt;
 &lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Hash&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;: Hash text with SHA-256.&lt;/span&gt;&lt;/p&gt;
-&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Convert&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;: Convert between plain text (UTF-8), hex and bytes.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Convert&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;: Convert between plain text (UTF-8), hex and bytes.&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; font-weight:400;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-size:20pt; font-weight:700; text-decoration: underline;&quot;&gt;Encryption&lt;/span&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;Encrypts plaintext using &lt;span style=&quot; font-weight:700;&quot;&gt;AES-256 (Advanced Encryption Standard) in GCM (Galois/Counter Mode)&lt;/span&gt; with a derived key from a passphrase.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;A cryptographically secure random &lt;span style=&quot; font-weight:700;&quot;&gt;salt&lt;/span&gt; and &lt;span style=&quot; font-weight:700;&quot;&gt;initialization vector (IV) &lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;are generated&lt;/span&gt;. A 256-bit encryption key is derived from the supplied passphrase using &lt;span style=&quot; font-weight:700;&quot;&gt;PBKDF2 with HMAC-SHA256&lt;/span&gt;. Encryption is performed using OpenSSL’s EVP interface. An authentication tag is generated. The resulting output is a Base64-encoded byte sequence containing, in order: a format version byte, the salt, IV, GCM authentication tag, and the ciphertext.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;Salt&lt;/span&gt;: (Pseudo)Random value added to the hash to prevent pre-computed dictionaries.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;IV&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;:&lt;/span&gt; (Pseudo)Random value to ensure that the encryption of data is unique and secure, even if the same plaintext is encrypted multiple times.&lt;/p&gt;
+&lt;p style=&quot; margin-top:12px; margin-bottom:12px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;PBKDF2&lt;/span&gt;: Password-Based Key Derivation Function (Version 2). Takes the passphrase and salt, and uses a pseudorandom function (in this case HMAC) on them, with many interations (in this case 10_000_000). This derives a key.&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;HMAC-SHA256&lt;/span&gt;: Hash-based Message Authentication Code using SHA-256 as the hashing algorithm. Combines the salt and passphrase before hashing.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;SHA256&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;: Secure Hashing Algorith that outputs 256 bytes. O&lt;/span&gt;ne-way function that is nearly impossible to reverse-engineer. Takes in data and outputs something that is 256 bytes long.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;AES-256&lt;/span&gt;: Advanced encryption standard. Symmetric encryption algorithm, which encodes data with a key and plain text, and can decode data if the correct key and correct encoded data (cipher text) is provided. Originally called Rijndael. 256 means it uses a key with a length of 256 bytes.&lt;/p&gt;
+&lt;p style=&quot;-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;p style=&quot; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;&quot;&gt;&lt;span style=&quot; font-weight:700;&quot;&gt;GCM&lt;/span&gt;&lt;span style=&quot; font-weight:400;&quot;&gt;: Galois/Counter Mode. For symmetric key cryptographic block ciphers. Takes in the key, cipher text and IV. Computes an authentication tag which can be used to check if the cipher text and associated data are not tampered with.&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
      </property>
     </widget>
    </widget>
@@ -114,7 +128,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
            </font>
           </property>
           <property name="text">
-           <string>Hashed Text</string>
+           <string>Hashed Text (as hex)</string>
           </property>
          </widget>
         </item>
@@ -128,6 +142,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
           </property>
           <property name="readOnly">
            <bool>true</bool>
+          </property>
+          <property name="plainText">
+           <string/>
           </property>
          </widget>
         </item>
@@ -162,7 +179,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
       </font>
      </property>
      <property name="text">
-      <string>Hash</string>
+      <string>Hash (With SHA-256)</string>
      </property>
     </widget>
    </widget>
@@ -371,6 +388,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <verstretch>0</verstretch>
            </sizepolicy>
           </property>
+          <property name="placeholderText">
+           <string>Hello</string>
+          </property>
          </widget>
         </item>
         <item>
@@ -416,6 +436,9 @@ li.checked::marker { content: &quot;\2612&quot;; }
             <horstretch>0</horstretch>
             <verstretch>0</verstretch>
            </sizepolicy>
+          </property>
+          <property name="placeholderText">
+           <string/>
           </property>
          </widget>
         </item>
@@ -477,7 +500,7 @@ li.checked::marker { content: &quot;\2612&quot;; }
        <widget class="QLabel" name="label_encryptPassphrase">
         <property name="font">
          <font>
-          <bold>true</bold>
+          <bold>false</bold>
          </font>
         </property>
         <property name="text">
@@ -486,7 +509,36 @@ li.checked::marker { content: &quot;\2612&quot;; }
        </widget>
       </item>
       <item>
-       <widget class="QLineEdit" name="encryptPassphrase"/>
+       <widget class="QLineEdit" name="encryptPassphrase">
+        <property name="placeholderText">
+         <string>correct horse battery staple</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_encryptPassphrase_2">
+        <property name="font">
+         <font>
+          <bold>false</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Interations:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="encryptIterations">
+        <property name="maximumSize">
+         <size>
+          <width>120</width>
+          <height>16777215</height>
+         </size>
+        </property>
+        <property name="placeholderText">
+         <string notr="true">1000000</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>

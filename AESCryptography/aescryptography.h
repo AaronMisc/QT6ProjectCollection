@@ -20,11 +20,20 @@ public:
 private slots:
     void on_buttonEncrypt_clicked();
     void on_buttonDecrypt_clicked();
+    void on_buttonHash_clicked();
 
 private:
     Ui::AESCryptography *ui;
 
+    enum class Format {
+        PlainText,
+        Hex,
+        Bytes,
+    };
+
+    int readIterationCount();
     void copyTextToClipboard(const QString &text);
+    void convertFromFormat(const Format format);
 };
 
 #endif // AESCRYPTOGRAPHY_H
