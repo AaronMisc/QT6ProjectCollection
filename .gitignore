@@ -80,3 +80,13 @@ CMakeLists.txt.user*
 .rcc/
 .uic/
 /build*/
+
+# Folders
+.cmake/
+.qt/
+.qtc/
+.qtc_clangd/
+.qtcreator/
+.vs/
+.ninja_deps/
+.ninja_log/
